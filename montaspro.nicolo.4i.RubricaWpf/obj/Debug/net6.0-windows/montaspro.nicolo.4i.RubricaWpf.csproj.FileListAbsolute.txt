@@ -1,0 +1,5 @@
+C:\Users\eneam\Desktop\montaspro.nicolo.4i.RubricaWpf\obj\Debug\net6.0-windows\montaspro.nicolo.4i.RubricaWpf.csproj.AssemblyReference.cache
+C:\Users\eneam\Desktop\montaspro.nicolo.4i.RubricaWpf\obj\Debug\net6.0-windows\MainWindow.g.cs
+C:\Users\eneam\Desktop\montaspro.nicolo.4i.RubricaWpf\obj\Debug\net6.0-windows\App.g.cs
+C:\Users\eneam\Desktop\montaspro.nicolo.4i.RubricaWpf\obj\Debug\net6.0-windows\montaspro.nicolo.4i.RubricaWpf_MarkupCompile.cache
+C:\Users\eneam\Desktop\montaspro.nicolo.4i.RubricaWpf\obj\Debug\net6.0-windows\montaspro.nicolo.4i.RubricaWpf_MarkupCompile.lref
