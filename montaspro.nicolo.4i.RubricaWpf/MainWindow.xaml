@@ -11,6 +11,6 @@
         
         >
 	<Grid>
-		<DataGrid x:Name="dgDati"></DataGrid>
+		<DataGrid x:Name="dgArray" LoadingRow="dgArray_LoadingRow"></DataGrid>
 	</Grid>
 </Window>
