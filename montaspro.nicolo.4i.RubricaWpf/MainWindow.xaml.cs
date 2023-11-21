@@ -26,55 +26,40 @@ namespace montaspro.nicolo._4i.RubricaWpf
         }
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
+             int idx = 0;
+            Contatto[] Contatti = new Contatto[100];
             try
-            {
-                Contatto[] Contatti = new Contatto[100];
-                for (int i = 0; i < Contatti.Length; i++)
-                    Contatti[i] = new Contatto();
-
-                int idx = 0;
-
-                StreamReader fin = new StreamReader("Dati.csv");
-                while (!fin.EndOfStream)
                 {
-                    string riga = fin.ReadLine();
-                    Contatto c = new Contatto(riga);
+                    StreamReader buffer = new StreamReader("Dati.csv");
 
-                    Contatti[idx++] = c;
+                for (int i = 0; i < Contatti.Length; i++)
+                    if (Contatti[i] == null)
+                        Contatti[i] = new Contatto();
+                idx = 0;
+                buffer.ReadLine();
+                while (!buffer.EndOfStream)
+                {
+                    string row = buffer.ReadLine();
+                    Contatto contatto = new Contatto(row);
+                    Contatti[idx++] = contatto;
                 }
-
-                dgDati.ItemsSource = Contatti;
             }
-            catch (Exception ex)
+            catch(Exception ex)
             {
-                MessageBox.Show("No no!!\n\n" + ex.Message);
+                MessageBox.Show(ex.Message);
             }
-
-            /*
-            try
-            {
-                Contatto c = new Contatto();
-                c.Numero = 1;
-                c.Nome = "Maurizio";
-                c.Cognome = "Conti";
-                c.EMail = "maurizio.conti@ittsrimini.edu.it";
-                c.Telefono = "3337722";
-                c.CAP = "47923";
-
-                Contatti[0] = c;
-       
-                Contatto c1 = new Contatto { Numero = 2, Nome = "Riccardo", Cognome = "Bianchi" };
-                Contatti[1] = c1;
-
-                Contatto c2 = new Contatto (  2, "Antonio", "Vallone" );
-                Contatti[2] = c2;
-            }
-            catch (Exception err)
-            {
-                MessageBox.Show("No no!!\n" + err.Message);
-            }
-            */
-
+            dgArray.ItemsSource = Contatti;
+        }
+        private void dgArray_LoadingRow(object sender, DataGridRowEventArgs e)
+        {
+            Contatto? c = e.Row.Item as Contatto;
+            if (c != null)
+                if (c.Numero == 0) 
+                {
+                    e.Row.Background = Brushes.Red;
+                    e.Row.Foreground = Brushes.White;
+                }
+            
 
         }
 
