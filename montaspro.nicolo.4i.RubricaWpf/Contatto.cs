@@ -6,35 +6,45 @@ using System.Threading.Tasks;
 
 namespace montaspro.nicolo._4i.RubricaWpf
 {
-    internal class Contatto
+    class Contatto
     {
-      
+        private int pk;
         private string nome;
         private string cognome;
-        private string email;
-        private int numero;
-        private string cellulare;
+        private string numero;
+        private string indirizzo;
+        private string mail;
 
+        public int Pk { get => pk; set => pk = value; }
+        public string Nome { get => nome; set => nome = value; }
+        public string Cognome { get => cognome; set => cognome = value; }
+        public string Numero { get => numero; set => numero = value; }
+        
+        public string Mail { get => mail; set => mail = value; }
+        public string Indirizzo { get => indirizzo; set => indirizzo = value; }
         
 
-        public Contatto(string row)
+        public Contatto(string riga)
         {
-            string[] fields = row.Split(';');
-            if (fields.Length >= 5)
-            {
-                numero = 0;
-                int.TryParse(fields[0], out numero);
-                nome = fields[1];
-                cognome = fields[2];
-                cellulare = fields[3];
-                email = fields[4];
+
+            string[] campi = riga.Split(';');
+            
+            if (int.TryParse(campi[0], out int res) && campi.Length==5) {
+                this.pk = res;
+                this.Nome = campi[1];
+                this.Cognome = campi[2];
+                this.numero = campi[3];
+                this.mail = campi[4];
             }
+            else
+                this.pk = 0;
+
+
+
         }
-        public Contatto() { }
-        public string Nome { get => nome; set => nome = value; }
-        public string Email { get => email; set => email = value; }
-        public string Cognome { get => cognome; set => cognome = value; }
-        public string Cellulare { get => cellulare; set => cellulare = value; }
-        public int Numero { get => numero; set => numero = value; }
+
+        public Contatto()
+        {
+        }
     }
 }
