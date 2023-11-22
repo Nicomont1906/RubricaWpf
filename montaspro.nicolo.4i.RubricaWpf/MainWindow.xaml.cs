@@ -50,7 +50,7 @@ namespace montaspro.nicolo._4i.RubricaWpf
             }
             dgArray.ItemsSource = Contatti;
         }
-        private void dgArray_LoadingRow(object sender, DataGridRowEventArgs e)
+        private void dgDati_LoadingRow(object sender, DataGridRowEventArgs e)
         {
             Contatto? c = e.Row.Item as Contatto;
             if (c != null)
