@@ -1,27 +1,46 @@
 # RubricaWpf
 ```
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+public MainWindow()
+        {
+            InitializeComponent();
+            Contatto[] Contatti = new Contatto[100];
+            try  
+            {
+                for (int i = 0; i < Contatti.Length; i++)
+                {
+                    Contatti[i] = new Contatto();
+                }
+                StreamReader fin = new StreamReader("Dati.csv");
+                int idx = 0;
+                while (!fin.EndOfStream)
+                {
+                    string? riga = fin.ReadLine();
+                    Contatti[idx] = new Contatto(riga);
+                    idx++;
+                }
+                dgDati.ItemsSource = Contatti;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Errore: " + ex.Message);
+            }
+        }
 
-namespace montaspro.nicolo._4i
-{
-    internal class Contatto
-    {
-        private int numero;
-        private string nome;
-        private string cognome;
-
-        public string Nome { get => nome; set => nome = value; }
-        public string Cognome { get => cognome; set => cognome = value; }
-        public int Numero { get => numero; set => numero = value; }
-    }
-}
+        private void dgDati_LoadingRow(object sender, DataGridRowEventArgs e)
+        {
+            Contatto c = e.Row.Item as Contatto;
+            if (c != null)
+            {
+                if (c.Pk == 0)
+                {
+                    e.Row.Background = Brushes.Red;
+                    e.Row.Foreground = Brushes.White;
+                }
+            }
 
 ```
-In questo codice come prima cosa è stata creata una classe c# rinominata "Contatto" alla quale sono stati aggiunti poi tre attributi privati: (int numero,string nome, string cognome) che in successione sono stati incapsulati utilizzando le "Property".
+Nel codice MainWindow.cs andiamo a creare il metodo "InitializeComponent() nel quale andiamo a creare un vettore di 100 elementi. 
+Successivamente con l'operazione tray andiamo a gestire eventuali eccezzioni e poi con un ciclio for andiamo a popolare il vettore. Andiamo ad aprire un file "Dati.csv" per visualizzzare quello che c'è sccritto e inzializziamo un contatore "idx" a 0 per l'indice del vettore. Nel blocco while scorriamo il file fino alla fine e ogni riga fine considerata come una stringa che viene memorizzata nel vettore. Con l'operazione di catch andiamo a visualizzare a schermo le eventuali eccezzioni. "Contatto c = e.Row.Item as Contatto;" ottiene l'oggetto Contatto associato alla riga corrente e se l'oggetto Contatto è diverso da null e ha la chiave primaria (Pk) uguale a 0, imposta lo sfondo e il testo della riga per evidenziarla.
 ```
 public partial class MainWindow : Window
     {
