@@ -32,7 +32,7 @@ namespace montaspro.nicolo._4i.RubricaWpf
                     Contatti[i] = new Contatto();
                     
                 }
-                StreamReader fin = new StreamReader("dati.csv");
+                StreamReader fin = new StreamReader("Dati.csv");
                 int idx = 0;
                 while (!fin.EndOfStream)
                 {
