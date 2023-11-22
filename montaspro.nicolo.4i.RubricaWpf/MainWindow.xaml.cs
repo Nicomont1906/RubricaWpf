@@ -23,44 +23,42 @@ namespace montaspro.nicolo._4i.RubricaWpf
         public MainWindow()
         {
             InitializeComponent();
-        }
-        private void Window_Loaded(object sender, RoutedEventArgs e)
-        {
-             int idx = 0;
             Contatto[] Contatti = new Contatto[100];
-            try
-                {
-                    StreamReader buffer = new StreamReader("Dati.csv");
-
-                for (int i = 0; i < Contatti.Length; i++)
-                    if (Contatti[i] == null)
-                        Contatti[i] = new Contatto();
-                idx = 0;
-                buffer.ReadLine();
-                while (!buffer.EndOfStream)
-                {
-                    string row = buffer.ReadLine();
-                    Contatto contatto = new Contatto(row);
-                    Contatti[idx++] = contatto;
-                }
-            }
-            catch(Exception ex)
+            try  
             {
-                MessageBox.Show(ex.Message);
+                
+                for (int i = 0; i < Contatti.Length; i++)
+                {
+                    Contatti[i] = new Contatto();
+                    
+                }
+                StreamReader fin = new StreamReader("dati.csv");
+                int idx = 0;
+                while (!fin.EndOfStream)
+                {
+                    string? riga = fin.ReadLine();
+                    Contatti[idx] = new Contatto(riga);
+                    idx++;
+                }
+                dgDati.ItemsSource = Contatti;
             }
-            dgArray.ItemsSource = Contatti;
+            catch (Exception ex)
+            {
+                MessageBox.Show("Errore: " + ex.Message);
+            }
         }
+
         private void dgDati_LoadingRow(object sender, DataGridRowEventArgs e)
         {
-            Contatto? c = e.Row.Item as Contatto;
+            Contatto c = e.Row.Item as Contatto;
             if (c != null)
-                if (c.Numero == 0) 
+            {
+                if (c.Pk == 0)
                 {
                     e.Row.Background = Brushes.Red;
                     e.Row.Foreground = Brushes.White;
                 }
-            
-
+            }
         }
 
     }
