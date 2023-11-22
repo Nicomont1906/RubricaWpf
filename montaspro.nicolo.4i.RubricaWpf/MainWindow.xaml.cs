@@ -26,11 +26,9 @@ namespace montaspro.nicolo._4i.RubricaWpf
             Contatto[] Contatti = new Contatto[100];
             try  
             {
-                
                 for (int i = 0; i < Contatti.Length; i++)
                 {
                     Contatti[i] = new Contatto();
-                    
                 }
                 StreamReader fin = new StreamReader("Dati.csv");
                 int idx = 0;
