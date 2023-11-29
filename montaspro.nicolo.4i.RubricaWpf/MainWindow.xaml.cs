@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using System.IO;
 
 namespace montaspro.nicolo._4i.RubricaWpf
 {
@@ -56,7 +57,7 @@ namespace montaspro.nicolo._4i.RubricaWpf
                     e.Row.Background = Brushes.Red;
                     e.Row.Foreground = Brushes.White;
                 }
-                else if (c.Telefono.StartsWith("3"))
+                else if (c.Numero.StartsWith("3"))
         {
             e.Row.Background = Brushes.Yellow;
         }
